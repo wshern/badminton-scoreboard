@@ -4,22 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
     <title>Badminton Score Board</title>
 </head>
 
 <body>
     <section id="player-reg">
          <div class="player-input">
-            <label for="player1">Player 1: </label>
-            <input type="text" id="player1-name-input" name="player1-name" placeholder="Enter name here">
-            <label for="player2">Player 2: </label>
-            <input type="text" id="player2-name-input" name="player2-name" placeholder="Enter name here">
+            <div>
+                <label for="player1-name-input">Player 1: </label>
+                <input type="text" id="player1-name-input" name="player1-name" placeholder="Enter name here">
+            </div>
+            <div>
+                <label for="player2-name-input">Player 2: </label>
+                <input type="text" id="player2-name-input" name="player2-name" placeholder="Enter name here">
+            </div>
             <button id="start-game-btn" onclick="startGame()">Start Game</button>
-         </div>
+        </div>
     </section>
-    <section id="scoreboard" style="display: none;">
-        <div id="player1-name"></div>
-        <div id="player2-name"></div>
+    <section id="scoreboard">
+        <div class="playername" id="player1-name"></div>
+        <div class="playername" id="player2-name"></div>
         <div id="player1-score">0</div>
         <div id="player2-score">0</div>
         <button id="add-points1">+1</button>
