@@ -13,22 +13,38 @@
          <div class="player-input">
             <div>
                 <label for="player1-name-input">Player 1: </label>
-                <input type="text" id="player1-name-input" name="player1-name" placeholder="Enter name here">
+                <input type="text" id="player1-name-input" placeholder="Enter name here">
             </div>
             <div>
                 <label for="player2-name-input">Player 2: </label>
-                <input type="text" id="player2-name-input" name="player2-name" placeholder="Enter name here">
+                <input type="text" id="player2-name-input" placeholder="Enter name here">
             </div>
-            <button id="start-game-btn" onclick="startGame()">Start Game</button>
+            <div class="win-condition-btn">
+                <p>Points to win:</p>
+                <input type="radio" id="win-11" name="win-condition" value="11">
+                <label for="win-11">11</label>
+                
+                <input type="radio" id="win-21" name="win-condition" value="21" checked>
+                <label for="win-21">21</label>
+                
+                <input type="radio" id="win-30" name="win-condition" value="30">
+                <label for="win-30">30</label>
+                
+                <input type="radio" id="custom-win" name="win-condition" value="custom">
+                <label for="custom-win">
+                    Custom:
+                    <input type="number" id="custom-win-input" min="1" disabled>
+                </label>
+            </div>
+            <button id="start-btn">Start Game</button>
         </div>
     </section>
     <section id="scoreboard">
         <div class="playername" id="player1-name"></div>
         <div class="playername" id="player2-name"></div>
-        <div id="player1-score">0</div>
-        <div id="player2-score">0</div>
-        <button id="add-points1">+1</button>
-        <button id="add-points2">+1</button>
+        <button class="scoreBtn" id="add-points1"></button>
+        <button class="scoreBtn" id="add-points2"></button>
         <button id="reset-game-btn">Reset Game</button>
+        <button id="new-game-btn">New Game</button>
     </section>
 </body>
