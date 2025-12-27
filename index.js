@@ -11,23 +11,32 @@ const win21 = document.getElementById('win-21');
 const win30 = document.getElementById('win-30');
 const customWin = document.getElementById('custom-win');
 const customWinInput = document.getElementById('custom-win-input');
+let winPoints;
+
 
 Array.from(winRadio).forEach(function(radio) {
     radio.addEventListener("change", function() {
-        if (customWin.checked) {
-            customWinInput.disabled = false;}
-            else {
-                customWinInput.disabled = true;
-            }
-        });
+        if (radio.value === "custom" && radio.checked) {
+            customWinInput.disabled = false;
+        } else {
+            customWinInput.disabled = true;
+        }
     });
-;
+});
 
 function startGame() {
     if (!player1Input.value || !player2Input.value) {
         alert("Please enter names for both players!");
         return;
     }
+    const selectedWinRadio = document.querySelector('input[name="win-condition"]:checked');
+    
+    if (selectedWinRadio.value === "custom") {
+        winPoints = Number(customWinInput.value);
+    } else {
+        winPoints = Number(selectedWinRadio.value);
+    }
+
 
     player1Name.textContent = player1Input.value;
     player2Name.textContent = player2Input.value;
@@ -53,6 +62,10 @@ function scoreIncrement(playerScore) {
     let currentScore = Number(playerScore.textContent);
     currentScore += 1;
     playerScore.textContent = currentScore;
+    
+    if (currentScore >= winPoints) {
+        
+    }
 }
 
 addPoints1.addEventListener("click", function() {
