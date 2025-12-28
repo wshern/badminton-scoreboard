@@ -18,11 +18,18 @@ let gamesNeeded;
 let player1GamesWon = 0;
 let player2GamesWon = 0;
 
+function setButtonsActive(active) {
+    addPoints1.disabled = !active;
+    addPoints2.disabled = !active;
+    minusPoints1.disabled = !active;
+    minusPoints2.disabled = !active;
+}
 
 Array.from(winRadio).forEach(function(radio) {
     radio.addEventListener("change", function() {
         if (radio.value === "custom" && radio.checked) {
             customWinInput.disabled = false;
+
         } else {
             customWinInput.disabled = true;
         }
@@ -39,6 +46,10 @@ function startGame() {
     
     if (selectedWinRadio.value === "custom") {
         winPoints = Number(customWinInput.value);
+        if (!winPoints || winPoints < 0) {
+            alert("Please enter min. 1 points!");
+            return;
+        }
     } else {
         winPoints = Number(selectedWinRadio.value);
     }
@@ -90,10 +101,7 @@ function scoreIncrement(playerScore, playerNum) {
 
         if (player1GamesWon === gamesNeeded || player2GamesWon === gamesNeeded) {
         alert(`${winnerName} wins the match!`);
-        addPoints1.disabled = true;
-        addPoints2.disabled = true;
-        minusPoints1.disabled = true;
-        minusPoints2.disabled = true;
+        setButtonsActive(false);
         gameActive = false;
         } else {
         player1Score.textContent = 0;
@@ -133,8 +141,7 @@ minusPoints2.addEventListener("click", function() {
 resetGameBtn.addEventListener("click", function() {
     player1Score.textContent = 0;
     player2Score.textContent = 0;
-    addPoints1.disabled = false;
-    addPoints2.disabled = false;
+    setButtonsActive(true);
     gameActive = true;
     
 });
@@ -142,13 +149,16 @@ resetGameBtn.addEventListener("click", function() {
 newSessionBtn.addEventListener("click", function() {
     player1Score.textContent = 0;
     player2Score.textContent = 0;
-    addPoints1.disabled = false;
-    addPoints2.disabled = false;
+    player1GamesWon = 0;
+    player2GamesWon = 0;
+    document.getElementById('player1-gamescore').textContent = "Games won:";
+    document.getElementById('player2-gamescore').textContent = "Games won:";
     player1Name.textContent = "";
     player2Name.textContent = "";
     player1Input.value = "";
     player2Input.value = "";
     document.getElementById('scoreboard').style.display = 'none';
     document.getElementById('player-reg').style.display = 'block';
+    setButtonsActive(true);
     gameActive = true;
-})
+});
