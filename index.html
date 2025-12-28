@@ -36,15 +36,37 @@
                     <input type="number" id="custom-win-input" min="1" disabled>
                 </label>
             </div>
+            <div class="bestof-btn">
+                <p>Best of:</p>
+                <input type="radio" id="bo-1" name="bo-condition" value="1">
+                <label for="bo-1">1</label>
+                <input type="radio" id="bo-3" name="bo-condition" value="3" checked>
+                <label for="bo-3">3</label>
+                <input type="radio" id="bo-5" name="bo-condition" value="5">
+                <label for="bo-5">5</label>
+            </div>
             <button id="start-btn">Start Game</button>
         </div>
     </section>
     <section id="scoreboard">
         <div class="playername" id="player1-name"></div>
         <div class="playername" id="player2-name"></div>
-        <button class="scoreBtn" id="add-points1"></button>
-        <button class="scoreBtn" id="add-points2"></button>
+
+        <div class="player-score">
+            <div class="gamescore" id="player1-gamescore">Games won:</div>
+            <div class="score" id="player1-score">0</div>
+            <button class="scoreBtn" id="add-points1">+1</button>
+            <button class="scoreBtn" id="minus-points1">-1</button>
+        </div>
+
+        <div class="player-score">
+            <div class="gamescore" id="player2-gamescore">Games won:</div>
+            <div class="score" id="player2-score">0</div>
+            <button class="scoreBtn" id="add-points2">+1</button>
+            <button class="scoreBtn" id="minus-points2">-1</button>
+        </div>
+
         <button id="reset-game-btn">Reset Game</button>
-        <button id="new-game-btn">New Game</button>
+        <button id="new-session-btn">New Session</button>
     </section>
 </body>
