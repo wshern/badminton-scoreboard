@@ -3,6 +3,7 @@ const player1Name = document.getElementById('player1-name');
 const player2Name = document.getElementById('player2-name');
 const player1Input = document.getElementById('player1-name-input');
 const player2Input = document.getElementById('player2-name-input');
+let gameActive = true;
 
 // win condition elements
 const winRadio = document.getElementsByName('win-condition');
@@ -29,6 +30,7 @@ Array.from(winRadio).forEach(function(radio) {
 });
 
 function startGame() {
+    gameActive = true;
     if (!player1Input.value || !player2Input.value) {
         alert("Please enter names for both players!");
         return;
@@ -73,16 +75,34 @@ function scoreIncrement(playerScore, playerNum) {
     let currentScore = Number(playerScore.textContent);
     currentScore += 1;
     playerScore.textContent = currentScore;
-    
+
     if (currentScore >= winPoints) {
+        let winnerName;
         if (playerNum === 1) {
             player1GamesWon += 1;
+            winnerName = player1Name.textContent;
         } else {
             player2GamesWon += 1;
+            winnerName = player2Name.textContent;
         }
-    }
+        alert(`${winnerName} wins the game!`);
+
+
+        if (player1GamesWon === gamesNeeded || player2GamesWon === gamesNeeded) {
+        alert(`${winnerName} wins the match!`);
+        addPoints1.disabled = true;
+        addPoints2.disabled = true;
+        minusPoints1.disabled = true;
+        minusPoints2.disabled = true;
+        gameActive = false;
+        } else {
+        player1Score.textContent = 0;
+        player2Score.textContent = 0;
+        }
+    
     document.getElementById('player1-gamescore').textContent = `Games won: ${player1GamesWon}`;
     document.getElementById('player2-gamescore').textContent = `Games won: ${player2GamesWon}`;
+    } 
 }
 
 addPoints1.addEventListener("click", function() {
@@ -94,6 +114,7 @@ addPoints2.addEventListener("click", function() {
 });
 
 function scoreDecrement(playerScore) {
+    if (!gameActive) return;
     let currentScore = Number(playerScore.textContent);
     if (currentScore > 0) {
         currentScore -= 1;
@@ -114,6 +135,8 @@ resetGameBtn.addEventListener("click", function() {
     player2Score.textContent = 0;
     addPoints1.disabled = false;
     addPoints2.disabled = false;
+    gameActive = true;
+    
 });
 
 newSessionBtn.addEventListener("click", function() {
@@ -127,4 +150,5 @@ newSessionBtn.addEventListener("click", function() {
     player2Input.value = "";
     document.getElementById('scoreboard').style.display = 'none';
     document.getElementById('player-reg').style.display = 'block';
+    gameActive = true;
 })
