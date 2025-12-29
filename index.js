@@ -82,6 +82,7 @@ const newSessionBtn = document.getElementById('new-session-btn');
 let player1Score = document.getElementById('player1-score');
 let player2Score = document.getElementById('player2-score');
 
+// Increment score function
 function scoreIncrement(playerScore, playerNum) {
     let currentScore = Number(playerScore.textContent);
     currentScore += 1;
@@ -102,6 +103,7 @@ function scoreIncrement(playerScore, playerNum) {
         if (player1GamesWon === gamesNeeded || player2GamesWon === gamesNeeded) {
         alert(`${winnerName} wins the match!`);
         setButtonsActive(false);
+        resetGameBtn.disabled = true;
         gameActive = false;
         } else {
         player1Score.textContent = 0;
@@ -121,6 +123,7 @@ addPoints2.addEventListener("click", function() {
     scoreIncrement(player2Score, 2);
 });
 
+// Decrement score function
 function scoreDecrement(playerScore) {
     if (!gameActive) return;
     let currentScore = Number(playerScore.textContent);

@@ -5,36 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
     <script src="index.js" defer></script>
-    <title>Badminton Score Board</title>
+    <title>Badminton Scoreboard</title>
 </head>
 
 <body>
     <section id="player-reg">
-         <div class="player-input">
-            <div>
-                <label for="player1-name-input">Player 1: </label>
-                <input type="text" id="player1-name-input" placeholder="Enter name here">
-            </div>
-            <div>
-                <label for="player2-name-input">Player 2: </label>
-                <input type="text" id="player2-name-input" placeholder="Enter name here">
+        <p>Badminton Scoreboard</p>
+        <h1 id="intro">LET'S PLAY!</h1>
+         <div class="player-info">
+            <div class="player-input">
+                <div class="player1-name">
+                    <label for="player1-name-input">Player(s) 1: </label>
+                    <input type="text" id="player1-name-input" placeholder="Enter name here">
+                </div>
+                <div class="player2-name">
+                    <label for="player2-name-input">Player(s) 2: </label>
+                    <input type="text" id="player2-name-input" placeholder="Enter name here">
+                </div>
             </div>
             <div class="win-condition-btn">
                 <p>Points to win:</p>
-                <input type="radio" id="win-11" name="win-condition" value="11">
-                <label for="win-11">11</label>
-                
-                <input type="radio" id="win-21" name="win-condition" value="21" checked>
-                <label for="win-21">21</label>
-                
-                <input type="radio" id="win-30" name="win-condition" value="30">
-                <label for="win-30">30</label>
-                
-                <input type="radio" id="custom-win" name="win-condition" value="custom">
-                <label for="custom-win">
-                    Custom:
-                    <input type="number" id="custom-win-input" placeholder="min. 1 pts" min="1" disabled>
-                </label>
+                <div class="wincon">
+                    <input type="radio" id="win-11" name="win-condition" value="11">
+                    <label for="win-11">11</label>
+                    
+                    <input type="radio" id="win-21" name="win-condition" value="21" checked>
+                    <label for="win-21">21</label>
+                    
+                    <input type="radio" id="win-30" name="win-condition" value="30">
+                    <label for="win-30">30</label>
+                </div>
+                <div class="custom-wincon">
+                    <input type="radio" id="custom-win" name="win-condition" value="custom">
+                    <label for="custom-win">
+                        Custom:
+                        <input type="number" id="custom-win-input" placeholder="min. 1 pts" min="1" disabled>
+                    </label>
+                </div>
             </div>
             <div class="bestof-btn">
                 <p>Best of:</p>
@@ -53,14 +60,14 @@
         <div class="playername" id="player2-name"></div>
 
         <div class="player-score">
-            <div class="gamescore" id="player1-gamescore">Games won:</div>
+            <div class="gamescore" id="player1-gamescore">Games won: 0</div>
             <div class="score" id="player1-score">0</div>
             <button class="scoreBtn" id="add-points1">+1</button>
             <button class="scoreBtn" id="minus-points1">-1</button>
         </div>
 
         <div class="player-score">
-            <div class="gamescore" id="player2-gamescore">Games won:</div>
+            <div class="gamescore" id="player2-gamescore">Games won: 0</div>
             <div class="score" id="player2-score">0</div>
             <button class="scoreBtn" id="add-points2">+1</button>
             <button class="scoreBtn" id="minus-points2">-1</button>
