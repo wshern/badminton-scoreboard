@@ -1,3 +1,7 @@
+// toggle layer visibility
+const scoreBoard = document.getElementById('scoreboard');
+const playerReg = document.getElementById("player-reg");
+
 // player name elements
 const player1Name = document.getElementById('player1-name');
 const player2Name = document.getElementById('player2-name');
@@ -58,16 +62,16 @@ function startGame() {
     bestOf = Number(selectedBoRadio.value);
     gamesNeeded = Math.ceil(bestOf / 2);
 
-
-
     player1Name.textContent = player1Input.value;
     player2Name.textContent = player2Input.value;
 
-    // change it after adding css
-    document.getElementById('player-reg').style.display = 'none';
-    document.getElementById('scoreboard').style.display = 'block';
+    // hide registration
+    playerReg.classList.remove('active');
+    // show scoreboard
+    scoreBoard.classList.add('active');
 
 }
+
 const startBtn = document.getElementById('start-btn');
 startBtn.addEventListener("click", startGame);
 
@@ -160,8 +164,11 @@ newSessionBtn.addEventListener("click", function() {
     player2Name.textContent = "";
     player1Input.value = "";
     player2Input.value = "";
-    document.getElementById('scoreboard').style.display = 'none';
-    document.getElementById('player-reg').style.display = 'block';
     setButtonsActive(true);
     gameActive = true;
+
+    // hide scoreboard, show registration
+    scoreBoard.classList.remove('active');
+    playerReg.classList.add('active');
+
 });
