@@ -11,10 +11,6 @@ let gameActive = true;
 
 // win condition elements
 const winRadio = document.getElementsByName('win-condition');
-const win11 = document.getElementById('win-11');
-const win21 = document.getElementById('win-21');
-const win30 = document.getElementById('win-30');
-const customWin = document.getElementById('custom-win');
 const customWinInput = document.getElementById('custom-win-input');
 let winPoints;
 let bestOf;
@@ -29,8 +25,8 @@ function setButtonsActive(active) {
     minusPoints2.disabled = !active;
 }
 
-Array.from(winRadio).forEach(function(radio) {
-    radio.addEventListener("change", function() {
+Array.from(winRadio).forEach(function (radio) {
+    radio.addEventListener("change", function () {
         if (radio.value === "custom" && radio.checked) {
             customWinInput.disabled = false;
 
@@ -47,10 +43,10 @@ function startGame() {
         return;
     }
     const selectedWinRadio = document.querySelector('input[name="win-condition"]:checked');
-    
+
     if (selectedWinRadio.value === "custom") {
         winPoints = Number(customWinInput.value);
-        if (!winPoints || winPoints < 0) {
+        if (!winPoints || winPoints < 1) {
             alert("Please enter min. 1 points!");
             return;
         }
@@ -64,6 +60,8 @@ function startGame() {
 
     player1Name.textContent = player1Input.value;
     player2Name.textContent = player2Input.value;
+    document.getElementById('player1-gamescore').textContent = 'Games won: 0';
+    document.getElementById('player2-gamescore').textContent = 'Games won: 0';
 
     // hide registration
     playerReg.classList.remove('active');
@@ -88,11 +86,65 @@ let player2Score = document.getElementById('player2-score');
 
 // Increment score function
 function scoreIncrement(playerScore, playerNum) {
+    let isGameWon = false;
+
+    if (!gameActive) return;
     let currentScore = Number(playerScore.textContent);
     currentScore += 1;
     playerScore.textContent = currentScore;
 
-    if (currentScore >= winPoints) {
+    let otherScore = playerNum === 1 ? Number(player2Score.textContent) : Number(player1Score.textContent);
+    let scoreDiff = Math.abs(currentScore - otherScore);
+    const deuceScore = winPoints - 1;
+
+    // making flat branches like this helps with CSS customisation
+
+    // custom points dont have deuce
+    // custom branch:
+    if ((winPoints !== 11 && winPoints !== 21) && currentScore >= winPoints) {
+        isGameWon = true;
+    }
+
+    if ((winPoints === 11 || winPoints === 21) && currentScore >= winPoints) {
+        let maxCap = winPoints === 11 ? 15 : 30;
+
+        if (currentScore >= deuceScore && otherScore >= deuceScore) {
+            if (scoreDiff >= 2 || currentScore >= maxCap) {
+                isGameWon = true;
+            } else {
+                return;
+            }
+        } else {
+            isGameWon = true;
+        }
+    }
+
+    /* for learning purposes, i will split standard and deuce into 2 branches as well
+
+    // standard branch
+    if ((winPoints === 11 || winPoints === 21) && currentScore >= winPoints) {
+        if (currentScore < deuceScore || otherScore < deuceScore) {
+            isGameWon = true;
+        }
+    }
+
+    // deuce branch
+    if ((winPoints === 11 || winPoints === 21) && currentScore >= winPoints) {
+        // Only check if BOTH are in deuce territory
+        if (currentScore >= deuceScore && otherScore >= deuceScore) {
+            // ← This makes the outer if selective!
+
+            if (scoreDiff >= 2 || currentScore >= maxCap) {
+                isGameWon = true;
+            } else {
+                return; // ← Now only runs during actual deuce!
+            }
+        }
+        // If not in deuce territory, this entire branch is skipped
+    }
+    */
+
+    if (isGameWon === true) {
         let winnerName;
         if (playerNum === 1) {
             player1GamesWon += 1;
@@ -105,25 +157,28 @@ function scoreIncrement(playerScore, playerNum) {
 
 
         if (player1GamesWon === gamesNeeded || player2GamesWon === gamesNeeded) {
-        alert(`${winnerName} wins the match!`);
-        setButtonsActive(false);
-        resetGameBtn.disabled = true;
-        gameActive = false;
+            alert(`${winnerName} wins the match!`);
+            setButtonsActive(false);
+            resetGameBtn.disabled = true;
+            gameActive = false;
         } else {
-        player1Score.textContent = 0;
-        player2Score.textContent = 0;
+            player1Score.textContent = 0;
+            player2Score.textContent = 0;
+            gameActive = true;
         }
-    
-    document.getElementById('player1-gamescore').textContent = `Games won: ${player1GamesWon}`;
-    document.getElementById('player2-gamescore').textContent = `Games won: ${player2GamesWon}`;
-    } 
+
+        document.getElementById('player1-gamescore').textContent = `Games won: ${player1GamesWon}`;
+        document.getElementById('player2-gamescore').textContent = `Games won: ${player2GamesWon}`;
+    }
 }
 
-addPoints1.addEventListener("click", function() {
+
+
+addPoints1.addEventListener("click", function () {
     scoreIncrement(player1Score, 1);
 });
 
-addPoints2.addEventListener("click", function() {
+addPoints2.addEventListener("click", function () {
     scoreIncrement(player2Score, 2);
 });
 
@@ -137,23 +192,23 @@ function scoreDecrement(playerScore) {
     }
 }
 
-minusPoints1.addEventListener("click", function() {
+minusPoints1.addEventListener("click", function () {
     scoreDecrement(player1Score);
 });
 
-minusPoints2.addEventListener("click", function() {
+minusPoints2.addEventListener("click", function () {
     scoreDecrement(player2Score);
 });
 
-resetGameBtn.addEventListener("click", function() {
+resetGameBtn.addEventListener("click", function () {
     player1Score.textContent = 0;
     player2Score.textContent = 0;
     setButtonsActive(true);
     gameActive = true;
-    
+
 });
 
-newSessionBtn.addEventListener("click", function() {
+newSessionBtn.addEventListener("click", function () {
     player1Score.textContent = 0;
     player2Score.textContent = 0;
     player1GamesWon = 0;
@@ -166,6 +221,7 @@ newSessionBtn.addEventListener("click", function() {
     player2Input.value = "";
     customWinInput.value = "";
     setButtonsActive(true);
+    resetGameBtn.disabled = false;
     gameActive = true;
 
     // hide scoreboard, show registration
