@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #242124;
+    background: #171a1d;
     color: #f0f0f0;
 }
 
@@ -11,6 +11,10 @@ body {
     padding: 40px 20px;
 }
 
+#header{
+    font-size: 45px;
+    border-bottom:2px #171a1d solid;
+}
 #player-reg, #scoreboard {
     display: block;
 }
@@ -20,6 +24,20 @@ body {
     display: none;
 }
 
+#player-reg {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px 30px;
+    background: #d3d0cb;
+    border: 2px solid #d3d0cb;
+    border-radius: 50px;
+    text-align: center;
+    color: #171a1d;
+}
+
+#title-who {
+    margin: 0;
+}
 
 .player-info {
     display: flex;
@@ -29,6 +47,7 @@ body {
 
 .player-input {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 20px;
 }
@@ -41,8 +60,78 @@ body {
 .player1-name input,
 .player2-name input {
     width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 6px;
+    height: 60px;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 25px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.win-condition-btn, .bestof-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+
+}
+
+
+#custom-win-input {
+    width: 100px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 25px;
+    border: none;
     box-sizing: border-box;
 }
+
+.wincon input[type="radio"],
+.bestof-btn input[type="radio"],
+.custom-wincon input[type="radio"] {
+    display: none;
+}
+
+.wincon label,
+.bestof-btn label,
+.custom-wincon label{
+    padding: 12px 18px;
+    border-radius: 20px;
+    border: 2px solid #5a6672;
+    cursor: pointer;
+}
+
+.wincon input[type="radio"]:checked + label,
+.bestof-btn input[type="radio"]:checked + label,
+.custom-wincon input[type="radio"]:checked + label  {
+    background: #5a6672;
+    color: white;
+}
+
+#start-btn {
+    box-sizing: border-box;
+    width: 450px;
+    max-width: 70%;
+    padding: 20px 40px;
+    font-size: 50px;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+    margin: 0 auto;
+    background: #5a6672;
+    transition: 0.3s ease;
+}
+
+#start-btn:hover {
+    box-shadow: 5px 10px 20px rgba(0,0,0, 0.5);
+    transform: scale(1.05);
+}
+
+
+@media (min-width: 1024px) {
+    .player-input{
+    display: flex;
+    flex-direction: row;
+}}

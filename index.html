@@ -11,17 +11,15 @@
 <body>
     <div class="app">
     <section class="active" id="player-reg">
-        <p>Badminton Scoreboard</p>
-        <h1 id="intro">LET'S PLAY!</h1>
+        <h1 id="header">Badminton Scoreboard</h1>
          <div class="player-info">
+            <h2 id="title-who">Who is playing?</h2>
             <div class="player-input">
                 <div class="player1-name">
-                    <label for="player1-name-input">Player(s) 1: </label>
-                    <input type="text" id="player1-name-input" placeholder="Enter name here">
+                    <input type="text" id="player1-name-input" placeholder="Player(s) 1">
                 </div>
                 <div class="player2-name">
-                    <label for="player2-name-input">Player(s) 2: </label>
-                    <input type="text" id="player2-name-input" placeholder="Enter name here">
+                    <input type="text" id="player2-name-input" placeholder="Player(s) 2">
                 </div>
             </div>
             <div class="win-condition-btn">
@@ -40,7 +38,7 @@
                     <input type="radio" id="custom-win" name="win-condition" value="custom">
                     <label for="custom-win">
                         Custom:
-                        <input type="number" id="custom-win-input" placeholder="min. 1 pts" min="1" disabled>
+                        <input type="number" id="custom-win-input" min="1" disabled>
                     </label>
                 </div>
             </div>
@@ -53,7 +51,7 @@
                 <input type="radio" id="bo-5" name="bo-condition" value="5">
                 <label for="bo-5">5</label>
             </div>
-            <button id="start-btn">Start Game</button>
+            <button id="start-btn">LET'S PLAY!</button>
         </div>
     </section>
     <section id="scoreboard">

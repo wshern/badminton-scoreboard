@@ -164,6 +164,7 @@ newSessionBtn.addEventListener("click", function() {
     player2Name.textContent = "";
     player1Input.value = "";
     player2Input.value = "";
+    customWinInput.value = "";
     setButtonsActive(true);
     gameActive = true;
 
