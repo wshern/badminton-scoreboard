@@ -1,29 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <title>Badminton Score Board</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="index.js" defer></script>
+  <title>Badminton Scoreboard</title>
 </head>
 
 <body>
-    <section id="player-reg">
-         <div class="player-input">
-            <label for="player1">Player 1: </label>
-            <input type="text" id="player1-name-input" name="player1-name" placeholder="Enter name here">
-            <label for="player2">Player 2: </label>
-            <input type="text" id="player2-name-input" name="player2-name" placeholder="Enter name here">
-            <button id="start-game-btn" onclick="startGame()">Start Game</button>
-         </div>
+  <div class="app">
+    <section class="active" id="player-reg">
+      <h1 id="header">Badminton Scoreboard</h1>
+      <div class="player-info">
+        <h2 id="title-who">Who is playing?</h2>
+        <div class="player-input">
+          <div class="player1-name">
+            <input
+              type="text"
+              id="player1-name-input"
+              placeholder="Player(s) 1"
+            />
+          </div>
+          <div class="player2-name">
+            <input
+              type="text"
+              id="player2-name-input"
+              placeholder="Player(s) 2"
+            />
+          </div>
+        </div>
+        <div class="win-condition-btn">
+          <p>Points to win:</p>
+          <div class="wincon">
+            <input type="radio" id="win-11" name="win-condition" value="11" />
+            <label for="win-11">11</label>
+
+            <input type="radio" id="win-21" name="win-condition" value="21" checked/>
+            <label for="win-21">21</label>
+
+            <input type="radio" id="win-30" name="win-condition" value="30" />
+            <label for="win-30">30</label>
+          </div>
+          <div class="custom-wincon">
+            <input
+              type="radio"
+              id="custom-win"
+              name="win-condition"
+              value="custom"
+            />
+            <label for="custom-win">
+              Custom:
+              <input type="number" id="custom-win-input" min="1" disabled />
+            </label>
+          </div>
+        </div>
+        <p id="disclaimer">*Deuce <span class="span-1">WILL NOT</span> be applied for <span class="span-2"> Custom Points</span></p>
+        <div class="bestof-btn">
+          <p>Best of:</p>
+          <input type="radio" id="bo-1" name="bo-condition" value="1" />
+          <label for="bo-1">1</label>
+          <input type="radio" id="bo-3" name="bo-condition" value="3" checked />
+          <label for="bo-3">3</label>
+          <input type="radio" id="bo-5" name="bo-condition" value="5" />
+          <label for="bo-5">5</label>
+        </div>
+        <button id="start-btn">LET'S PLAY!</button>
+      </div>
     </section>
-    <section id="scoreboard" style="display: none;">
-        <div id="player1-name"></div>
-        <div id="player2-name"></div>
-        <div id="player1-score">0</div>
-        <div id="player2-score">0</div>
-        <button id="add-points1">+1</button>
-        <button id="add-points2">+1</button>
-        <button id="reset-game-btn">Reset Game</button>
+    <section id="scoreboard">
+      <div class="player1-panel">
+        <div class="playername" id="player1-name"></div>
+        <div class="player-score">
+          <div class="gamescore" id="player1-gamescore"></div>
+          <div class="score" id="player1-score">0</div>
+          <div class="score-ctrl">
+          <button class="scoreBtn" id="add-points1">+1</button>
+          <button class="scoreBtn" id="minus-points1">-1</button>
+          </div>
+        </div>
+      </div>
+      <div class="player2-panel">
+        <div class="playername" id="player2-name"></div>
+        <div class="player-score">
+          <div class="gamescore" id="player2-gamescore"></div>
+          <div class="score" id="player2-score">0</div>
+          <div class="score-ctrl">
+          <button class="scoreBtn" id="add-points2">+1</button>
+          <button class="scoreBtn" id="minus-points2">-1</button>
+          </div>
+        </div>
+      </div>
+      <button id="reset-game-btn">Reset Game</button>
+      <button id="new-session-btn">New Session</button>
     </section>
+  </div>
 </body>

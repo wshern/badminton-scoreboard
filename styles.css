@@ -1,0 +1,261 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #171a1d;
+  color: #f0f0f0;
+}
+
+.app {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+#header {
+  font-size: 45px;
+  border-bottom: 2px #171a1d solid;
+}
+#player-reg,
+#scoreboard {
+  display: block;
+}
+
+#player-reg:not(.active),
+#scoreboard:not(.active) {
+  display: none;
+}
+
+#player-reg {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 50px 30px;
+  background: #d3d0cb;
+  border: 2px solid #d3d0cb;
+  border-radius: 50px;
+  text-align: center;
+  color: #171a1d;
+}
+
+#title-who {
+  margin: 0;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.player-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.player1-name,
+.player2-name {
+  flex: 1;
+  padding: 10px;
+}
+
+.player1-name input,
+.player2-name input {
+  width: 100%;
+  height: 60px;
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.win-condition-btn,
+.bestof-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  row-gap: 10px;
+  font-size: 20px;
+}
+
+#custom-win-input {
+  width: 100px;
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 25px;
+  border: none;
+  box-sizing: border-box;
+}
+
+.wincon input[type="radio"],
+.bestof-btn input[type="radio"],
+.custom-wincon input[type="radio"] {
+  display: none;
+}
+
+.wincon label,
+.bestof-btn label {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 2px solid #5a6672;
+  cursor: pointer;
+}
+
+.wincon input[type="radio"]:checked + label,
+.bestof-btn input[type="radio"]:checked + label {
+  background: #5a6672;
+  color: white;
+}
+
+#disclaimer {
+  font-size: 15px;
+  margin-top: 0;
+}
+
+.span-1 {
+  font-weight: bold;
+}
+
+.span-2 {
+  text-decoration: underline;
+}
+#start-btn {
+  box-sizing: border-box;
+  width: 450px;
+  max-width: 70%;
+  padding: 20px 40px;
+  font-size: 50px;
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+  margin: 0 auto;
+  background: #5a6672;
+  transition: 0.3s ease;
+}
+
+#start-btn:hover {
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+@media (min-width: 1024px) {
+  .player-input {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+#scoreboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+@media (min-width: 1024px) {
+  #scoreboard {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.player1-panel,
+.player2-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #f0f0f0;
+  border-radius: 25px;
+  padding: 30px 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .player1-panel,
+  .player2-panel {
+    padding: 30px 40px;
+  }
+}
+
+.player1-panel {
+  background: #5995ed;
+}
+
+.player2-panel {
+  background: #ec368d;
+}
+
+.playername {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  border-bottom: 2.5px solid black;
+}
+
+.player-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.gamescore {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.score {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .score {
+    font-size: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .score {
+    font-size: 120px;
+  }
+}
+
+.score-ctrl {
+  display: flex;
+  gap: 10px;
+}
+
+.scoreBtn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background: #f0f0f0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#reset-game-btn,
+#new-session-btn {
+  grid-column: 1 / -1;
+  justify-self: center;
+
+  padding: 10px 30px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 25px;
+  background: #f0f0f0;
+}
+
+#reset-game-btn {
+  font-size: 15px;
+}
+
+#new-session-btn {
+  font-size: 18px;
+  font-weight: bold;
+}
