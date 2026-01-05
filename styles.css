@@ -128,13 +128,19 @@ body {
   width: 450px;
   max-width: 70%;
   padding: 20px 40px;
-  font-size: 50px;
+  font-size: 30px;
   border-radius: 50px;
   border: none;
   text-align: center;
   margin: 0 auto;
   background: #5a6672;
   transition: 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  #start-btn {
+    font-size: 50px;
+  }
 }
 
 #start-btn:hover {
